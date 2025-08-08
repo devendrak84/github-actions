@@ -5,4 +5,4 @@ jobs:
         runs-on: ubuntu-24.04
         steps:
            - name: Output Information
-             run: echo "${{ github.workflow }} workflow is running on ${{ github.event_name }} event. ${{ toJson(github.actor) }} triggered this workflow."
+             run: echo "${{ github.workflow }} workflow is running on ${{ github.event_name }} event. ${{ toJson(github) }} triggered this workflow."
