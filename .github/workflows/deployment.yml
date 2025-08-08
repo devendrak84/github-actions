@@ -23,7 +23,7 @@ jobs:
         run: echo "Bye-Bye"
   Deploy:
     runs-on: ubuntu-24.04
-    needs: first-job
+    needs: test
     steps:
       - name: Get Code from github
         uses: actions/checkout@v4
