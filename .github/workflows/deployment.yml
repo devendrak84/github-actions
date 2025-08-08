@@ -1,8 +1,29 @@
-name: First Workflow
+name: Deployment Workflow
 on: push
 jobs:
   first-job:
     runs-on: ubuntu-24.04
+    steps:
+      - name: Get Code from github
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Tests
+        run: npm test
+      - name: Build Project
+        run: npm run build
+      - name: Notify Completion
+        run: echo "Workflow completed successfully!"
+      - name: Final Step
+        if: always()
+        run: echo "Bye-Bye"
+  Deploy:
+    runs-on: ubuntu-24.04
+    needs: first-job
     steps:
       - name: Get Code from github
         uses: actions/checkout@v4
