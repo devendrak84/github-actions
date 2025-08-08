@@ -388,4 +388,20 @@ For technical support, questions, or POC evaluation feedback:
 *Demonstrating the future of scalable, cost-effective web applications*
 
 
+# Run all tests
+npm test
+
+# Run with coverage
+npm run test:coverage
+
+# Run in watch mode  
+npm run test:watch
+
+# Use custom test runner
+npm run test:runner all
+npm run test:runner smoke
+npm run test:runner session
+npm run test:runner broadcasting
+
+
 

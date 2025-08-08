@@ -4,7 +4,22 @@ jobs:
   first-job:
     runs-on: ubuntu-24.04
     steps:
-      - name: Print-Greetings
-        run: echo "Hello !!!"
-      - name: Bye-Bye
+      - name: Get Code from github
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Tests
+        run: npm test
+      - name: Build Project
+        run: npm run build
+      - name: Deploy Project
+        run: echo "Deploying project..."
+      - name: Notify Completion
+        run: echo "Workflow completed successfully!"
+      - name: Final Step
+        if: always()
         run: echo "Bye-Bye"

@@ -16,6 +16,15 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:all": "react-scripts test --coverage --watchAll=false",
+    "test:coverage": "react-scripts test --coverage --coverageDirectory=coverage --watchAll=false",
+    "test:unit": "react-scripts test --testPathIgnorePatterns=Integration --watchAll=false",
+    "test:integration": "react-scripts test --testPathPattern=Integration --watchAll=false",
+    "test:watch": "react-scripts test",
+    "test:verbose": "react-scripts test --verbose --watchAll=false",
+    "test:silent": "react-scripts test --silent --watchAll=false",
+    "test:performance": "react-scripts test --testNamePattern=\"performance|Performance\" --watchAll=false",
+    "test:runner": "node scripts/test-runner.js",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
