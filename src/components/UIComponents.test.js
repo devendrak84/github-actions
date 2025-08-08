@@ -5,6 +5,7 @@ jest.useFakeTimers();
 
 describe('User Interface Components', () => {
   beforeEach(() => {
+    jest.useFakeTimers();
     jest.clearAllTimers();
   });
 
@@ -12,6 +13,7 @@ describe('User Interface Components', () => {
     act(() => {
       jest.runOnlyPendingTimers();
     });
+    jest.useRealTimers();
   });
 
   test('displays EasyJet logo and branding', () => {

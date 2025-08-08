@@ -90,6 +90,10 @@ describe('SSH Operations Dashboard', () => {
     const hostDropdown = screen.getByDisplayValue('🌐 All (14)');
     fireEvent.change(hostDropdown, { target: { value: 'server-01.example.com' } });
     
+    // Change status to disconnected first so start button is enabled
+    const statusDropdown = screen.getByDisplayValue('Connected');
+    fireEvent.change(statusDropdown, { target: { value: 'Disconnected' } });
+    
     // Click start session button
     const startButton = screen.getByTitle('Start SSH Session');
     fireEvent.click(startButton);
