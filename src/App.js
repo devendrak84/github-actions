@@ -7,6 +7,7 @@ function App() {
   const [messageType, setMessageType] = useState('');
   const [selectedHost, setSelectedHost] = useState('ALL_HOSTS');
   const [activeTab, setActiveTab] = useState('sessions');
+  // eslint-disable-next-line no-unused-vars
   const [editableFields, setEditableFields] = useState({});
   const [selectedSessions, setSelectedSessions] = useState({});
   const [customBroadcastMessage, setCustomBroadcastMessage] = useState('');
