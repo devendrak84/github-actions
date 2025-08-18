@@ -121,7 +121,7 @@ jobs:
         run: echo "Deployment completed successfully!"
   report:
     runs-on: ubuntu-24.04
-    needs: [lint, test, build, deploy]
+    needs: [lint, test]
     if: failure()
     steps:
       - name: Output information
