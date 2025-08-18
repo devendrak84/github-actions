@@ -17,8 +17,8 @@ jobs:
               with:
                   name: ${{ github.event.inputs.artifact-name }}
                   path: ./artifacts
-            - name: List Artifact Contents
-              run: ls -la ./artifacts
+            - name: List All Files in Artifacts
+              run: find ./artifacts -type f -print
             # - name: Output information
             #   run: echo "Deploying to ${{ github.event }}"
             # - name: Deploy Application
