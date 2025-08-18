@@ -1,6 +1,37 @@
 name: Deployment Workflow
 on: [push, workflow_dispatch]
 jobs:
+  lint:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Get Code from github
+        uses: actions/checkout@v4
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Cache npm dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Lint
+        run: npx eslint src/ --ext .js,.jsx,.ts,.tsx --max-warnings 0
+      - name: Upload Lint Results
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-results
+          path: |
+            eslint-report.json
+            *.log
+          retention-days: 7
+
   test:
     runs-on: ubuntu-24.04
     steps:
