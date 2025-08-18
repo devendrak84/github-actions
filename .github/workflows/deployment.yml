@@ -108,8 +108,8 @@ jobs:
   deploy:
     needs: build
     uses: ./.github/workflows/reusable-workflow.yml
-    with:
-      environment: production
+    # with:
+    #   environment: production
     # runs-on: ubuntu-24.04
     # needs: build
     # steps:
@@ -119,7 +119,7 @@ jobs:
     #       name: build-artifacts
     #       path: build/
     #   - name: List Artifact Contents
-    #     run: ls -la build/
+    # #     run: ls -la build/
     #   - name: Deploy Project
     #     run: echo "Deploying project..."
     #   - name: Notify Deployment Completion
