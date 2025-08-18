@@ -108,6 +108,8 @@ jobs:
   deploy:
     needs: build
     uses: ./.github/workflows/reusable-workflow.yml
+    with: 
+      artifact-name: build-artifacts
     # with:
     #   environment: production
     # runs-on: ubuntu-24.04
