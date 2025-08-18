@@ -20,7 +20,8 @@ describe('SSH Operations Dashboard', () => {
   test('renders SSH Operations Dashboard header', () => {
     render(<App />);
     expect(screen.getByText('SSH Operations Dashboard')).toBeInTheDocument();
-    expect(screen.getByText('Real-time session management with AWS AppSync integration')).toBeInTheDocument();
+    // Intentionally failing test - looking for text that doesn't exist
+    expect(screen.getByText('This text does not exist in the app')).toBeInTheDocument();
   });
 
   test('renders navigation tabs', () => {
