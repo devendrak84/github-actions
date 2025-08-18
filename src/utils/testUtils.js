@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 
 // Custom render function with common setup
 export function renderApp(component, options = {}) {
-  const { initialProps = {}, ...renderOptions } = options;
+  const { ...renderOptions } = options;
   
   const Wrapper = ({ children }) => {
     return children;
@@ -219,7 +219,7 @@ export function verifyBroadcastingInterface() {
   expect(screen.getByText('📡 Send')).toBeInTheDocument();
 }
 
-export default {
+const testUtilsExports = {
   renderApp,
   selectHost,
   switchToTab,
@@ -240,3 +240,5 @@ export default {
   verifyTableStructure,
   verifyBroadcastingInterface
 };
+
+export default testUtilsExports;

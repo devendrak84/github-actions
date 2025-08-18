@@ -247,7 +247,7 @@ describe('Integration Tests', () => {
     // Both operations should complete without conflicts
     await waitFor(() => {
       // Should see messages from both operations
-      const messageContainer = document.querySelector('.message-container');
+      const messageContainer = screen.getByTestId('message-container');
       expect(messageContainer).toBeInTheDocument();
     });
   });
@@ -281,13 +281,10 @@ describe('Integration Tests', () => {
     firstTabableElement.focus();
     
     // Should be able to navigate through interactive elements
-    const activeElement = document.activeElement;
-    expect(activeElement).toBeInstanceOf(HTMLElement);
+    expect(firstTabableElement).toHaveFocus();
     
     // Enter key should activate buttons/links when focused
-    if (activeElement && activeElement.tagName === 'BUTTON') {
-      // This would depend on which button gets focus first
-      expect(activeElement).toBeInTheDocument();
-    }
+    expect(firstTabableElement).toBeInTheDocument();
+    expect(firstTabableElement.tagName).toBe('BUTTON');
   });
 });

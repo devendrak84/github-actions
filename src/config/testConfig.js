@@ -195,7 +195,7 @@ export const browserCompat = {
   ]
 };
 
-export default {
+const configExports = {
   testConfig,
   testConstants,
   generateTestData,
@@ -205,3 +205,5 @@ export default {
   errorScenarios,
   browserCompat
 };
+
+export default configExports;

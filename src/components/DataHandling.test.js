@@ -206,15 +206,16 @@ describe('Data Handling and State Management', () => {
     const connectedMatch = statsText.match(/Connected: (\d+)/);
     const disconnectedMatch = statsText.match(/Disconnected: (\d+)/);
     
-    if (connectedMatch && disconnectedMatch) {
-      const connected = parseInt(connectedMatch[1]);
-      const disconnected = parseInt(disconnectedMatch[1]);
-      
-      // Should have some connected and some disconnected servers
-      expect(connected).toBeGreaterThan(0);
-      expect(disconnected).toBeGreaterThan(0);
-      expect(connected + disconnected).toBeLessThanOrEqual(14);
-    }
+    expect(connectedMatch).toBeTruthy();
+    expect(disconnectedMatch).toBeTruthy();
+    
+    const connected = parseInt(connectedMatch[1]);
+    const disconnected = parseInt(disconnectedMatch[1]);
+    
+    // Should have some connected and some disconnected servers
+    expect(connected).toBeGreaterThan(0);
+    expect(disconnected).toBeGreaterThan(0);
+    expect(connected + disconnected).toBeLessThanOrEqual(14);
   });
 
   test('handles empty or invalid states gracefully', async () => {

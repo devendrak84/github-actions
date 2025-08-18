@@ -443,7 +443,7 @@ Broadcasted to ${result.subscribersNotified} subscribers`, 'error');
 
         {/* Message Display Area */}
         {message && (
-          <div className={`message-container ${messageType}`}>
+          <div className={`message-container ${messageType}`} data-testid="message-container">
             <div className="message-content">
               {message.split('\n').map((line, index) => (
                 <div key={index}>{line}</div>

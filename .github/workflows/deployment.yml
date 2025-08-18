@@ -119,3 +119,13 @@ jobs:
         run: echo "Deploying project..."
       - name: Notify Deployment Completion
         run: echo "Deployment completed successfully!"
+  report:
+    runs-on: ubuntu-24.04
+    needs: [lint, test, build, deploy]
+    if: failure()
+    steps:
+      - name: Output information
+        run: |
+          echo "Something went wrong"
+          echo "${{ github.event_name  }}"
+          echo "${{ github }}"
