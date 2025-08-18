@@ -19,7 +19,7 @@ describe('SSH Operations Dashboard', () => {
 
   test('renders SSH Operations Dashboard header', () => {
     render(<App />);
-    expect(screen.getByText('SSH Operations Dashboard')).toBeInTheDocument();
+    expect(screen.getByText('SSH Operations Dashboard add')).toBeInTheDocument();
     expect(screen.getByText('Real-time session management with AWS AppSync integration')).toBeInTheDocument();
   });
 
