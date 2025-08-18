@@ -1,14 +1,29 @@
 name: Reusable Workflow
-on: workflow_call
+on: 
+    workflow_call:
+        inputs:
+            artifact-name:
+                description: "The name of the artifact to deploy"
+                required: true
+                type: string
+                default: build-artifacts
+                
 jobs:
     deploy:
         runs-on: ubuntu-latest
         steps:
-            - name: Output information
-              run: echo "Deploying to ${{ github.event }}"
-            - name: Deploy Application
-              run: echo "Deploying application to ${{ github.event }}"
-            - name: Post-deployment steps
-              run: echo "Running post-deployment steps for ${{ github.event }}"
-            - name: Report
-              run: echo "Reporting status for ${{ toJson(github) }}"
+            - name: Download Artifact
+              uses: actions/download-artifact@v4
+              with:
+                  name: ${{ github.event.inputs.artifact-name }}
+                  path: ./artifacts
+            - name: List Artifact Contents
+              run: ls -la ./artifacts
+            # - name: Output information
+            #   run: echo "Deploying to ${{ github.event }}"
+            # - name: Deploy Application
+            #   run: echo "Deploying application to ${{ github.event }}"
+            # - name: Post-deployment steps
+            #   run: echo "Running post-deployment steps for ${{ github.event }}"
+            # - name: Report
+            #   run: echo "Reporting status for ${{ toJson(github) }}"
