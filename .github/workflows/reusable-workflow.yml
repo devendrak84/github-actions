@@ -5,10 +5,10 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Output information
-              run: echo "Deploying to ${{ github.event.inputs.environment }}"
+              run: echo "Deploying to ${{ github.event }}"
             - name: Deploy Application
-              run: echo "Deploying application to ${{ github.event.inputs.environment }}"
+              run: echo "Deploying application to ${{ github.event }}"
             - name: Post-deployment steps
-              run: echo "Running post-deployment steps for ${{ github.event.inputs.environment }}"
+              run: echo "Running post-deployment steps for ${{ github.event }}"
             - name: Report
               run: echo "Reporting status for ${{ toJson(github) }}"
