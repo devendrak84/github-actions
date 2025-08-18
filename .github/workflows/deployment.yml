@@ -106,20 +106,24 @@ jobs:
         run: echo "Build completed and artifacts uploaded!"
 
   deploy:
-    runs-on: ubuntu-24.04
     needs: build
-    steps:
-      - name: Download Build Artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: build-artifacts
-          path: build/
-      - name: List Artifact Contents
-        run: ls -la build/
-      - name: Deploy Project
-        run: echo "Deploying project..."
-      - name: Notify Deployment Completion
-        run: echo "Deployment completed successfully!"
+    uses: ./.github/workflows/reusable-workflow.yml
+    with:
+      environment: production
+    # runs-on: ubuntu-24.04
+    # needs: build
+    # steps:
+    #   - name: Download Build Artifacts
+    #     uses: actions/download-artifact@v4
+    #     with:
+    #       name: build-artifacts
+    #       path: build/
+    #   - name: List Artifact Contents
+    #     run: ls -la build/
+    #   - name: Deploy Project
+    #     run: echo "Deploying project..."
+    #   - name: Notify Deployment Completion
+    #     run: echo "Deployment completed successfully!"
   report:
     runs-on: ubuntu-24.04
     needs: [lint, test]
