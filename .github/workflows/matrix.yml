@@ -5,7 +5,7 @@ jobs:
         strategy:
           matrix:
             node-version: [14, 16, 18, 20]
-            operating-system: [ubuntu-20.04, ubuntu-22.04]
+            operating-system: [ubuntu-20.04, windows-2022]
         runs-on: ${{ matrix.operating-system }}
         steps:
             - name: Get Code from github
