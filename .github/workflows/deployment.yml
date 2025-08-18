@@ -127,5 +127,4 @@ jobs:
       - name: Output information
         run: |
           echo "Something went wrong"
-          echo "${{ github.event_name  }}"
-          echo "${{ github }}"
+          echo "${{ toJson(github) }}"
