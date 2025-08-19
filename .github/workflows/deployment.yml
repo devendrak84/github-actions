@@ -126,6 +126,31 @@ jobs:
     #     run: echo "Deploying project..."
     #   - name: Notify Deployment Completion
     #     run: echo "Deployment completed successfully!"
+  container:
+    runs-on: ubuntu-24.04
+    container:
+      image: node:20-alpine
+      env:
+        NODE_ENV: production
+      options: --cpus 1
+    steps:
+      - name: Get Code from github
+        uses: actions/checkout@v4
+      - name: Show container info
+        run: |
+          echo "Running in container..."
+          node --version
+          npm --version
+          cat /etc/os-release
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Tests in Container
+        run: npm test
+      - name: Container Build
+        run: npm run build
+      - name: List Build Output
+        run: ls -la build/
+
   report:
     runs-on: ubuntu-24.04
     needs: [lint, test]
