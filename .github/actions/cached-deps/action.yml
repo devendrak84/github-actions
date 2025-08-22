@@ -13,6 +13,10 @@ inputs:
     description: 'Enable caching'
     required: false
     default: 'true'
+outputs:
+  used-cache:
+    description: 'Indicates if the cache was used'
+    value: ${{ steps.install.outputs.used-cache }}
 runs:
   using: 'composite'
   steps:
@@ -26,6 +30,10 @@ runs:
         restore-keys: |
           ${{ inputs.cache-key }}-
     - name: Install Dependencies
+      id: install
       if: steps.cache-deps.outputs.cache-hit != 'true' || ${{ inputs.caching == 'true' }}
       shell: bash
-      run: npm ci
+      run: |
+        npm ci
+        echo "Dependencies installed successfully."
+        echo "::set-output name=used-cache::'${{ inputs.caching}}'"
