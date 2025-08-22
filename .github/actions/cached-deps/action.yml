@@ -9,10 +9,15 @@ inputs:
     description: 'Path to the dependencies to cache'
     required: false
     default: 'node_modules'
+  caching:
+    description: 'Enable caching'
+    required: false
+    default: 'true'
 runs:
   using: 'composite'
   steps:
     - name: Cache dependencies
+      if: ${{ inputs.caching == 'true' }}
       id: cache-deps
       uses: actions/cache@v4
       with:
@@ -21,6 +26,6 @@ runs:
         restore-keys: |
           ${{ inputs.cache-key }}-
     - name: Install Dependencies
-      if: steps.cache-deps.outputs.cache-hit != 'true'
+      if: steps.cache-deps.outputs.cache-hit != 'true' || ${{ inputs.caching == 'true' }}
       shell: bash
       run: npm ci
