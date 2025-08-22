@@ -1,0 +1,25 @@
+name: 'Cache Dependencies'
+description: 'Custom action to cache and restore dependencies'
+inputs:
+  cache-key:
+    description: 'Key for the cache'
+    required: true
+  cache-path:
+    description: 'Path to the dependencies to cache'
+    required: true
+runs:
+  using: 'composite'
+  steps:
+    - name: Cache dependencies
+      uses: actions/cache@v4
+      with:
+        # path: ${{ inputs.cache-path }}
+        # key: ${{ inputs.cache-key }}
+        path: node_modules
+        key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ inputs.cache-key }}
+    - name: Install Dependencies
+      if: steps.cache-deps.outputs.cache-hit != 'true'
+      shell: bash
+      run: npm ci
